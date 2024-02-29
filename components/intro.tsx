@@ -13,7 +13,7 @@ export default function Intro() {
 
     const textH1 = "Hey, Alex Christakou here 👋 ".split(" "); 
     return (
-        <section className="mb-28 max-w-[50rem] text-center sm:mb-0">
+        <section className="mt-28 mb-28 max-w-[30rem] text-center leading-10 sm:mb-0">
         <div className ="flex items-center justify-center">
             <div className="relative">
                 <motion.div
