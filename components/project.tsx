@@ -3,7 +3,9 @@
 import { useRef } from 'react';
 import { projectsData } from '@/lib/data';
 import Image from 'next/image';
+import { motion } from 'framer-motion';
 import { useScroll } from 'framer-motion';
+import { useTransform } from 'framer-motion';
 
 type ProjectProps = (typeof projectsData)[number];
 
@@ -13,14 +15,25 @@ export default function Project({
     tags,
     imageUrl,
 }: ProjectProps) {
-    const ref = useRef(null);
-    useScroll({
-        target: '',
+    const ref = useRef<HTMLDivElement>(null);
+    const { scrollYProgress } = useScroll({
+        target: ref,
         offset: ["0 1", "1.33 1"]
     });
+    const scaleProgress = useTransform(scrollYProgress, [0, 1], [0.8, 1]);
+    const opacityProgress = useTransform(scrollYProgress, [0, 1], [0.6, 1]);
+
     return (
-        <section className="group bg-slate-50 max-w-[42rem] border border-slate-300/[5] overflow-hidden sm:pr-8 relative sm:h-[20rem] mb-3 sm:mb-8 last:mb-0
-        even:pl-8 hover:bg-slate-200 transition">
+        <motion.div
+        ref={ref}
+        style={{
+            scale: scaleProgress,
+            opacity: scrollYProgress,
+        }}
+            className="group mb-3 sm:mb-8 last:mb-0"
+        >
+        <section
+            className="bg-slate-50 max-w-[42rem] border border-slate-300/[5] rounded-lg overflow-hidden sm:pr-8 relative sm:h-[20rem] group-even:pl-8 hover:bg-slate-200 transition">
             <div className="flex flex-col h-full pt-4 pb-8 sm:pl-10 sm: pr-2 sm:pt-10 sm:max-w-[50%] group-even:ml-[18rem]">
                 <h3 className="text-2xl font-semibold">{title}</h3>
                 <p className="mt-2 leading-relaxed text-slate-600">{description}</p>
@@ -46,6 +59,7 @@ export default function Project({
                 group-even:-right-[initial] group-even:-left-40"
             />
    
-        </section>
+            </section>
+            </motion.div>
     );
 }
