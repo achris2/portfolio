@@ -28,16 +28,20 @@ function Project({
     imageUrl,
 }: ProjectProps) {
     return (
-        <section>
-            <h3>{title}</h3>
-            <p>{description}</p>
-            <ul>
+        <section className="bg-slate-100 max-w-[30rem] border border-slate-900/5 overflow-hidden sm:pr-8 relative">
+            <h3 className="text-2xl font-semibold">{title}</h3>
+            <p className="mt-2 leading-relaxed text-slate-600">{description}</p>
+            <ul className="flex flex-wrap mt-4 gap-2">
                 {tags.map((tag, index) => (
-                    <li key={index}>{tag}</li>
+                    <li className="bg-slate-950/[0.7] px-3 py-1 text-[0.7rem] uppercase tracking-wider text-white rounded-full " key={index}>{tag}</li>
                 ))}
             </ul>
 
-            <Image src={imageUrl} alt={title} />
+            <Image
+                src={imageUrl}
+                alt={title}
+                className="absolute"
+            />
    
         </section>
     );
