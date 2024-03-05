@@ -5,7 +5,7 @@ import Project from './project';
 
 export const Projects = () => {
     return (
-        <section>
+        <section id="projects" className="scroll-mt-[0rem]">
             <SectionHeading>Projects</SectionHeading>
             <div>
                 {
