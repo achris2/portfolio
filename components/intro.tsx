@@ -1,20 +1,34 @@
 "use client";
 import Image from 'next/image';
-import React from 'react';
+import React, { useEffect } from 'react';
 import alexAvatar from "@/public/alex-avatar.jpeg";
 import { motion } from "framer-motion";
 import Link from 'next/link';
 import { BsArrowRight } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { FaCode } from "react-icons/fa";
+import { useInView } from 'react-intersection-observer';
+import { useActiveSectionContext } from '@/context/active-section-context';
 
 
 export default function Intro() {
+    const { ref, inView } = useInView({
+        threshold: 0.5, 
+    });
+    const { setActiveSection } = useActiveSectionContext();
+
+    useEffect(() => {
+        if (inView) {
+            setActiveSection("Home");
+        }
+    }, [inView, setActiveSection]); 
 
     const textH1 = "Hey, Alex Christakou here 👋 ".split(" "); 
     return (
-        <section className="mt-28 mb-28 max-w-[30rem] text-center leading-10 sm:mb-0 scroll-mt-[100rem]"
-        id="home"
+        <section
+            ref={ref}
+            className="mt-28 mb-28 max-w-[30rem] text-center leading-10 sm:mb-0 scroll-mt-[100rem]"
+            id="home"
         >
         <div className ="flex items-center justify-center">
             <div className="relative">
