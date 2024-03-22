@@ -1,27 +1,15 @@
 "use client";
 import Image from 'next/image';
-import React, { useEffect } from 'react';
 import alexAvatar from "@/public/alex-avatar.jpeg";
 import { motion } from "framer-motion";
 import Link from 'next/link';
-import { BsArrowRight } from "react-icons/bs";
 import { MdEmail } from "react-icons/md";
 import { FaCode } from "react-icons/fa";
-import { useInView } from 'react-intersection-observer';
-import { useActiveSectionContext } from '@/context/active-section-context';
+import { useSectionInView } from '@/lib/hooks';
 
 
 export default function Intro() {
-    const { ref, inView } = useInView({
-        threshold: 0.5, 
-    });
-    const { setActiveSection } = useActiveSectionContext();
-
-    useEffect(() => {
-        if (inView) {
-            setActiveSection("Home");
-        }
-    }, [inView, setActiveSection]); 
+    const { ref } = useSectionInView("Home", 0.5); 
 
     const textH1 = "Hey, Alex Christakou here 👋 ".split(" "); 
     return (
