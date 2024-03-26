@@ -18,10 +18,10 @@ export const links = [
     name: "Projects",
     hash: "#projects",
   },
-  // {
-  //   name: "Skills",
-  //   hash: "#skills",
-  // },
+  {
+    name: "Skills",
+    hash: "#skills",
+  },
     // {
     //   name: "Experience",
     //   hash: "#experience",
@@ -88,7 +88,7 @@ export const skillsData = [
   "CSS3",
   "JavaScript (ES6+)",
   "TypeScript",
-  "React",
+  "React JS",
   "Next.js",
   "Node.js",
   "Git",
